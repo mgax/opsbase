@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+set -x
+curl https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add -
+echo 'deb http://packages.elastic.co/elasticsearch/2.x/debian stable main' >> /etc/apt/sources.list
+echo 'deb http://packages.elastic.co/kibana/4.5/debian stable main' >> /etc/apt/sources.list
+apt-get update

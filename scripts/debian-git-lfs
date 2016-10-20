@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+set -x
+curl -L https://packagecloud.io/github/git-lfs/gpgkey | apt-key add -
+echo 'deb https://packagecloud.io/github/git-lfs/debian/ jessie main' >> /etc/apt/sources.list
+apt-get update

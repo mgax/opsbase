@@ -6,7 +6,10 @@ SITENAME=$1
 cat <<NGINX_CONF
 server {
   server_name $SITENAME;
-  return 301 https://\$host\$request_uri;
+
+  location / {
+    return 301 https://\$host\$request_uri;
+  }
 
   location /.well-known/acme-challenge {
     alias /opt/ssl/acme-challenge;

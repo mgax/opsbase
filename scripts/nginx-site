@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+SITENAME=$1
+
+cat <<NGINX_CONF
+server {
+  server_name $SITENAME;
+  return 301 https://\$host\$request_uri;
+
+  location /.well-known/acme-challenge {
+    alias /opt/ssl/acme-challenge;
+  }
+}
+
+server {
+  listen 443 ssl;
+  server_name $SITENAME;
+
+  ssl_certificate /opt/ssl/certs/$SITENAME/fullchain.pem;
+  ssl_certificate_key /opt/ssl/certs/$SITENAME/privkey.pem;
+  include /opt/ssl/nginx/https.conf;
+}
+NGINX_CONF

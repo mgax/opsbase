@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+set -x
+git init /opt/ops
+cd /opt/ops
+mkdir /opt/repos
+git init --bare /opt/repos/ops.git
+git remote add origin /opt/repos/ops.git
+echo "# System configuration" > Readme.md
+git add .
+git commit -m 'initial'
+git push --set-upstream origin master

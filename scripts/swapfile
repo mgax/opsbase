@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+FILENAME=/opt/swap/$1
+
+set -x
+mkdir -p /opt/swap
+echo 'vm.swappiness = 10' > /etc/sysctl.d/mgax-swap.conf
+echo '10' > /proc/sys/vm/swappiness
+dd if=/dev/zero of=$FILENAME bs=1M count=1024
+chmod 600 $FILENAME
+mkswap $FILENAME
+echo "$FILENAME none swap sw 0 0" >> /etc/fstab
+swapon $FILENAME

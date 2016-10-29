@@ -8,8 +8,6 @@ cd /opt/ssl
 mkdir bin libexec acme-challenge nginx
 chmod 700 nginx
 
-openssl dhparam -out nginx/dhparams.pem 2048
-
 curl -L https://rawgit.com/lukas2511/dehydrated/992beecbdbf89ec071624af6d46814239d808bcc/letsencrypt.sh -o libexec/letsencrypt.sh
 chmod +x libexec/letsencrypt.sh
 
@@ -39,3 +37,5 @@ ssl_prefer_server_ciphers on;
 add_header Strict-Transport-Security max-age=15768000;
 ssl_dhparam /opt/ssl/nginx/dhparams.pem;
 NGINX_HTTPS_CONF
+
+openssl dhparam -out nginx/dhparams.pem 2048

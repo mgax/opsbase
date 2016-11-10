@@ -12,7 +12,7 @@ server {
   }
 
   location /.well-known/acme-challenge {
-    alias /opt/ssl/acme-challenge;
+    alias /opt/https/acme-challenge;
   }
 }
 
@@ -20,8 +20,8 @@ server {
   listen 443 ssl;
   server_name $SITENAME;
 
-  ssl_certificate /opt/ssl/certs/$SITENAME/fullchain.pem;
-  ssl_certificate_key /opt/ssl/certs/$SITENAME/privkey.pem;
-  include /opt/ssl/nginx/https.conf;
+  ssl_certificate /opt/https/certs/$SITENAME/fullchain.pem;
+  ssl_certificate_key /opt/https/certs/$SITENAME/privkey.pem;
+  include /opt/https/nginx/https.conf;
 }
 NGINX_CONF
